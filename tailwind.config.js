@@ -2,7 +2,11 @@
 export default {
   content: ["./src/**/*.tsx"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily:{
+        'raleway':['Raleway', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 }
