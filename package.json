@@ -11,10 +11,10 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.0",
-    "bootstrap-icons": "^1.10.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.45.4",
+    "react-icons": "^4.10.1",
     "zod": "^3.22.2"
   },
   "devDependencies": {
