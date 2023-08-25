@@ -3,8 +3,11 @@ export default {
   content: ["./src/**/*.tsx"],
   theme: {
     extend: {
-      fontFamily:{
-        'raleway':['Raleway', 'sans-serif'],
+      // fontFamily:{
+      //   'poppins':['Poppins', 'sans-serif'],
+      // },
+      boxShadow:{
+        'input': '0 0 0 8px rgba(201, 214, 231, 1);'
       },
     },
   },
