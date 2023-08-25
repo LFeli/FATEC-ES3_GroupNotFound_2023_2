@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form'
-import { BsFacebook, BsGoogle } from 'react-icons/bs'
 
 export function App() {
   const { register, handleSubmit } = useForm();
@@ -13,11 +12,13 @@ export function App() {
   };
 
   return (
-    <div className="grid grid-cols-2 h-screen w-full font-raleway">
+    <div className="grid grid-cols-2 h-screen w-full">
       {/* Left  side*/}
-      <div className='flex flex-col justify-center overflow-y-auto w-full max-w-[480px] mx-auto'>
-        <h1 className="font-bold text-[28px] text-zinc-950 mb-4">Seja bem vindo!</h1>
-        <span className='text-base'>Faça o login e acesse todo o nosso conteúdo.</span>
+      <div className='flex flex-col items-center justify-center overflow-y-auto w-full'>
+        <div className='max-w-[480px] w-full'>
+          <h1 className="font-bold text-3xl text-zinc-950 mb-4">Seja bem vindo!</h1>
+          <span className='text-base'>Faça o login e acesse todo o nosso conteúdo.</span>
+        </div>
 
         {/* <div className='mt-16 flex flex-col gap-10'>
           <button className='flex items-center justify-center gap-8 py-5 px-28 border border-[#BCBCBC] rounded-2xl text-[#212121] font-semibold hover:bg-[#7092BF] hover:text-[#F2F2F2] hover:border-[#7092BF] transition-colors'>
@@ -33,10 +34,9 @@ export function App() {
           </button>
         </div> */}
 
-
         <form 
           onSubmit={handleSubmit(onSubmit)}
-          className='pt-8'
+          className='pt-8 max-w-[480px] w-full'
         >
           <div className='grid gap-8'>
             <div className='flex gap-3 flex-col'>
@@ -44,7 +44,7 @@ export function App() {
               <input type="text" 
                 {...register('email')}
                 placeholder='Seu e-mail'
-                className='p-5 rounded-2xl   border-2 border-[#B4B2B0] text-[#212121] font-semibold transition-colors placeholder:text-[#776F67]/75 hover:border-[#7092BF] hover:bg-[#F2F2F2]/90 '
+                className='p-5 rounded-2xl border-2 border-[#B4B2B0] text-[#212121] font-semibold transition-all placeholder:text-[#776F67]/75 hover:border-[#7092BF] hover:bg-[#F2F2F2]/90 focus:shadow-input focus:outline-none focus:border-[#7092BF]'
               />
             </div>
 
@@ -57,17 +57,17 @@ export function App() {
               <input type="password" 
                 {...register('password')}
                 placeholder='Seu e-mail'
-                className='p-5 rounded-2xl border-2 border-[#B4B2B0] text-[#212121] font-semibold transition-colors placeholder:text-[#776F67]/75 hover:border-[#7092BF] hover:bg-[#F2F2F2]/90 '
+                className='p-5 rounded-2xl border-2 border-[#B4B2B0] text-[#212121] font-semibold transition-all placeholder:text-[#776F67]/75 hover:border-[#7092BF] hover:bg-[#F2F2F2]/90 focus:shadow-input focus:outline-none focus:border-[#7092BF]'
               />
             </div>
           </div>
 
           
         
-        <button type="submit" className='h-16 w-full rounded-2xl bg-[#7092BF] font-semibold text-[#F2F2F2] mt-14 hover:bg-[#6583ac] transition-colors'>Login</button>
+        <button type="submit" className='h-16 w-full rounded-2xl bg-[#7092BF] font-semibold text-[#F2F2F2] mt-14 hover:bg-[#6583ac] focus:bg-[#6583ac] focus:outline-none transition-colors'>Login</button>
       </form>
 
-      <span className='text-[#212121] text-center mt-10'>Não tem conta? <a href="#" className='font-semibold underline text-[#7092BF] hover:text-[#546e8f] transition-colors'>Inscreva-se</a></span>
+      <span className='text-[#212121] text-base text-center mt-10'>Não tem conta? <a href="#" className='font-semibold text-[#7092BF] hover:text-[#546e8f] hover:underline underline-offset-2  transition-colors'>Inscreva-se</a></span>
 
       <pre>{output}</pre>
 
