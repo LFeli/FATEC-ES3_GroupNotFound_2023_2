@@ -1,15 +1,41 @@
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
-import { useForm } from 'react-hook-form'
+import { FormProvider, useForm } from 'react-hook-form'
+import { z } from 'zod'
+
+const UserLoginSchema = z.object({
+  email: z.string().nonempty({
+    message: 'O campo E-mail e obrigatório' 
+  }).email({
+    message: 'Formato do E-mail inválido'
+  }),
+  password: z.string().nonempty({
+    message: 'O campo Senha e obrigatório'
+  }).min(6, {
+    message: 'O campo Senha precisa de no mínimo 6 caracteres'
+  }),
+})
+
+type UserLoginData = z.infer<typeof UserLoginSchema>
 
 export function App() {
-  const { register, handleSubmit } = useForm();
   const[output, setOutput] = useState('')
+
+  const UserLoginForm = useForm<UserLoginData>({
+    resolver: zodResolver(UserLoginSchema)
+  })
   
   const onSubmit = (data: any) => {
     // console.log('Dados do formulário:', data);
     setOutput(JSON.stringify(data, null, 2))
 
   };
+
+  const { 
+    handleSubmit, 
+    formState: { isSubmitting, errors }, 
+    register,
+  } = UserLoginForm;
 
   return (
     <div className="grid grid-cols-2 h-screen w-full">
@@ -34,38 +60,44 @@ export function App() {
           </button>
         </div> */}
 
-        <form 
-          onSubmit={handleSubmit(onSubmit)}
-          className='pt-8 max-w-[480px] w-full'
-        >
+        <FormProvider {...UserLoginForm}>
+          <form 
+            onSubmit={handleSubmit(onSubmit)}
+            className='pt-8 max-w-[480px] w-full'
+          >
           <div className='grid gap-8'>
-            <div className='flex gap-3 flex-col'>
-              <label htmlFor="email" className='text-lg font-medium'>E-mail</label>
-              <input type="text" 
-                {...register('email')}
-                placeholder='Seu e-mail'
-                className='p-5 rounded-2xl border-2 border-[#B4B2B0] text-[#212121] font-semibold transition-all placeholder:text-[#776F67]/75 hover:border-[#7092BF] hover:bg-[#F2F2F2]/90 focus:shadow-input focus:outline-none focus:border-[#7092BF]'
-              />
-            </div>
-
-            <div className='flex gap-3 flex-col'>
-              <div className='flex items-center justify-between'>
-                <label htmlFor="password" className='text-lg font-medium'>Senha</label>
-
-                <a href="#" className='text-lg font-semibold text-[#546e8f] hover:text-[#273343] transition-colors hidden'>Esqueceu a senha?</a>
+              <div className='flex gap-3 flex-col'>
+                <label htmlFor="email" className='text-lg font-medium'>E-mail</label>
+                <input type="text" 
+                  {...register('email')}
+                  placeholder='Seu e-mail'
+                  className='p-5 rounded-2xl border-2 border-[#B4B2B0] text-[#212121] font-semibold transition-all placeholder:text-[#776F67]/75 hover:border-[#7092BF] hover:bg-[#F2F2F2]/90 focus:shadow-input focus:outline-none focus:border-[#7092BF]'
+                />
+                {errors.email && <span className='text-red-500 text-sm font-medium'>{errors.email.message}</span> }
               </div>
-              <input type="password" 
-                {...register('password')}
-                placeholder='Seu e-mail'
-                className='p-5 rounded-2xl border-2 border-[#B4B2B0] text-[#212121] font-semibold transition-all placeholder:text-[#776F67]/75 hover:border-[#7092BF] hover:bg-[#F2F2F2]/90 focus:shadow-input focus:outline-none focus:border-[#7092BF]'
-              />
-            </div>
-          </div>
 
-          
-        
-        <button type="submit" className='h-16 w-full rounded-2xl bg-[#7092BF] font-semibold text-[#F2F2F2] mt-14 hover:bg-[#6583ac] focus:bg-[#6583ac] focus:outline-none transition-colors'>Login</button>
-      </form>
+              <div className='flex gap-3 flex-col'>
+                <div className='flex items-center justify-between'>
+                  <label htmlFor="password" className='text-lg font-medium'>Senha</label>
+
+                  <a href="#" className='text-lg font-semibold text-[#546e8f] hover:text-[#273343] transition-colors hidden'>Esqueceu a senha?</a>
+                </div>
+                <input type="password" 
+                  {...register('password')}
+                  placeholder='Seu e-mail'
+                  className='p-5 rounded-2xl border-2 border-[#B4B2B0] text-[#212121] font-semibold transition-all placeholder:text-[#776F67]/75 hover:border-[#7092BF] hover:bg-[#F2F2F2]/90 focus:shadow-input focus:outline-none focus:border-[#7092BF]'
+                />
+                {errors.password && <span className='text-red-500 text-sm font-medium'>{errors.password.message}</span> }
+              </div>
+            </div>
+
+            <button 
+              type="submit" 
+              disabled={isSubmitting}
+              className='h-16 w-full rounded-2xl bg-[#7092BF] font-semibold text-[#F2F2F2] mt-14 hover:bg-[#6583ac] focus:bg-[#6583ac] focus:outline-none transition-colors'
+              >Login</button>
+          </form>
+        </FormProvider>
 
       <span className='text-[#212121] text-base text-center mt-10'>Não tem conta? <a href="#" className='font-semibold text-[#7092BF] hover:text-[#546e8f] hover:underline underline-offset-2  transition-colors'>Inscreva-se</a></span>
 
