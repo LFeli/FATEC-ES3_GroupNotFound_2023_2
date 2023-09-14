@@ -19,27 +19,48 @@ const UserLoginSchema = z.object({
 type UserLoginData = z.infer<typeof UserLoginSchema>
 
 export function App() {
-  const[output, setOutput] = useState('')
+  const { register, handleSubmit, setValue } = useForm();
+  const [output, setOutput] = useState('')
 
   const UserLoginForm = useForm<UserLoginData>({
     resolver: zodResolver(UserLoginSchema)
   })
   
-  const onSubmit = (data: any) => {
-    // console.log('Dados do formulário:', data);
-    setOutput(JSON.stringify(data, null, 2))
-
-  };
-
-  const { 
-    handleSubmit, 
+  const {
     formState: { isSubmitting, errors }, 
-    register,
   } = UserLoginForm;
+
+  const onSubmit = async (data: any) => {
+    try {
+      const requestBody = {
+        email: data.email,
+        senha: data.password
+      };
+    
+      const response = await fetch('https://localhost:7094/Clientes/LoginCliente', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestBody)
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+  
+        setValue('codCliente', data.codCliente);
+
+      } else {
+        console.error('Erro ao fazer a solicitação:', response.status);
+      }
+    } catch (error) {
+      console.error('Erro ao buscar endereço:', error);
+    }
+  };
 
   return (
     <div className="grid grid-cols-2 h-screen w-full">
-      {/* Left  side*/}
+      
       <div className='flex flex-col items-center justify-center overflow-y-auto w-full'>
         <div className='max-w-[480px] w-full'>
           <h1 className="font-bold text-3xl text-zinc-950 mb-4">Seja bem vindo!</h1>
@@ -100,7 +121,9 @@ export function App() {
         </FormProvider>
 
       <span className='text-[#212121] text-base text-center mt-10'>Não tem conta? <a href="#" className='font-semibold text-[#7092BF] hover:text-[#546e8f] hover:underline underline-offset-2  transition-colors'>Inscreva-se</a></span>
-
+      
+      <input {...register('codCliente')} type="text"></input>
+      
       <pre>{output}</pre>
 
       <footer className='flex items-center justify-center'>
