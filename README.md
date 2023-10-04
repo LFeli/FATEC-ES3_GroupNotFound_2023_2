@@ -1,41 +1,27 @@
-# Group Not Found | Engenharia de Software III (Pré-TG)
-## Índice
+# React + TypeScript + Vite
 
-- [Visão Geral](#visão-geral)
-- [Tecnologias Utilizadas](#tecnologias-utilizadas)
-- [Instalação](#instalação)
-- [Como Usar](#como-usar)
-- [Integrantes do Projeto](#integrantes-do-projeto)
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Visão Geral
+Currently, two official plugins are available:
 
-Bem-vindo ao repositório do nosso projeto de Pré-TG (Trabalho de Graduação)! Neste repositório, estamos desenvolvendo uma aplicação full-stack. Nosso projeto visa simplificar a vida dos amantes de animais de um Petshop fictício chamado "Oh my Dog", proporcionando agendamentos on-line para serviços prestado no Petshop, além do diferencia desse projeto que seria uma parte dedicada há **Doações** para animais.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Tecnologias Utilizadas
+## Expanding the ESLint configuration
 
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-**Back-End:**
+- Configure the top-level `parserOptions` property like this:
 
+```js
+   parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: ['./tsconfig.json', './tsconfig.node.json'],
+    tsconfigRootDir: __dirname,
+   },
+```
 
-**Front-End:**
-
-
-**Banco de dados:**
-
-**Design:**
-- Figma
-- Affinity Designer
-
-## Instalação
-
-**Front-end:**
-1. Clone este repositório: `git clone https://github.com/LFeli/ES3_GroupNotFound_2023_2.git`
-2. Navegue até o diretório do projeto: `cd front`
-3. Instale as dependências: `npm install`
-
-## Como Usar
-
-**Front-end:**
-1. Navegue até o diretório do projeto: `cd front`
-2. Rode o servidor: `npm run dev`
-3. Acesse a porta que o servidor retornar.
+- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
+- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
