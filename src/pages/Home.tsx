@@ -36,42 +36,52 @@ export function Home() {
     <>
       <header
       data-scrolled={scrolled}
-      className={`w-full h-20 fixed z-20 transition-colors duration-150 bg-[#7092BF] data-[scrolled="true"]:border-b-2 boder-white`}
+      className={`w-full h-20 fixed z-20 transition-colors duration-150 bg-[#7092BF] data-[scrolled="true"]:border-b-2 border-white`}
     >
         <NavigationMenu className="h-full w-full max-w-[1240px] flex items-center justify-between mx-auto">
           <NavigationMenuLink href="#">
             <img src="./logo.svg" alt="Logo do pet-shop Oh My Dog" />
           </NavigationMenuLink>
 
-          <NavigationMenuList className="flex gap-8">
+          <NavigationMenuList className="flex gap-5">
 
             <NavigationMenuItem>
               <NavigationMenuLink href="#">
-                Serviços
+                <Button variant={"ghost"} className="text-white">
+                  Serviços
+                </Button>
               </NavigationMenuLink>
             </NavigationMenuItem>
 
             <NavigationMenuItem>
               <NavigationMenuLink href="#">
-                Agendamento
+                <Button variant={"ghost"} className="text-white">
+                  Agendamento
+                </Button>
               </NavigationMenuLink>
             </NavigationMenuItem>
 
             <NavigationMenuItem>
               <NavigationMenuLink href="#">
-                Doações
+                <Button variant={"ghost"} className="text-white">
+                  Doações
+                </Button>
               </NavigationMenuLink>
             </NavigationMenuItem>
 
             <NavigationMenuItem>
               <NavigationMenuLink href="#">
-                Sobre nós
+                <Button variant={"ghost"} className="text-white">
+                  Sobre nós
+                </Button>
               </NavigationMenuLink>
             </NavigationMenuItem>
 
             <NavigationMenuItem>
               <NavigationMenuLink href="#">
-                Contato
+                <Button variant={"ghost"} className="text-white">
+                  Contato
+                </Button>
               </NavigationMenuLink>
             </NavigationMenuItem>
 
