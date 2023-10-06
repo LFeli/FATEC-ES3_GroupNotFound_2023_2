@@ -3,7 +3,7 @@ import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMe
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useEffect, useState } from "react";
-import { BsArrowRight, BsBoxArrowRight, BsBrush, BsDroplet, BsFillHouseFill, BsFillPersonFill, BsFlower1, BsGem, BsGiftFill, BsRepeat, BsScissors } from 'react-icons/bs'
+import { BsArrowRight, BsBicycle, BsBoxArrowRight, BsBrush, BsDroplet, BsFillHouseFill, BsFillPersonFill, BsFlower1, BsGem, BsGiftFill, BsRepeat, BsScissors, BsTicketDetailed } from 'react-icons/bs'
 import { FaPaw } from "react-icons/fa";
 
 
@@ -151,7 +151,7 @@ export function Home() {
               {/* left side */}
               <div className="flex flex-col gap-8 w-full max-w-[475px] ">
                 <h1 className="text-white text-6xl font-medium leading-tight">Todo carinho que o seu pet precisa</h1>
-                <p className="text-[#F8F8F8] text-2xl leading-relaxed">Descubra o Oh My Dog, o pet-shop que oferece agendamentos de serviços como banho, tosa, spa e mais. Agende agora mesmo!</p>
+                <p className="text-[#F8F8F8] text-xl leading-relaxed">Descubra o Oh My Dog, o pet-shop que oferece agendamentos de serviços como banho, tosa, spa e mais. Agende agora mesmo!</p>
 
                 <Button variant={"outline"} className="w-full max-w-[240px] py-5 text-[#F8F8F8] rounded-full">
                   Veja mais
@@ -171,7 +171,7 @@ export function Home() {
         <section className="relative z-20 bg-[#FCFCFC] mt-20 mx-8 rounded-[40px]">
           <div className="w-full max-w-[1240px] mx-auto py-16">
             <h2 className="text-6xl font-medium leading-tight max-w-3xl">Serviços que oferecemos ao seu pet.</h2>
-            <p className="text-2xl leading-relaxed max-w-5xl mt-8 mb-16">Descubra os serviços excepcionais do Oh My Dog! Oferecemos banho, tosa, spa e muito mais. Nossa equipe dedicada garantirá que seu pet receba o melhor tratamento.</p>
+            <p className="text-xl leading-relaxed max-w-5xl mt-8 mb-16">Descubra os serviços excepcionais do Oh My Dog! Oferecemos banho, tosa, spa e muito mais. Nossa equipe dedicada garantirá que seu pet receba o melhor tratamento.</p>
 
             {/* cards */}
             <div className="grid grid-cols-3 grid-rows-2 gap-11">
@@ -282,6 +282,67 @@ export function Home() {
                     <BsArrowRight className="h-5 w-5"/>
                   </Button>
                 </CardContent>
+              </Card>
+
+            </div>
+          </div>
+        </section>
+
+        {/* How we work */}
+        <section className="bg-[#EAEFF6] pt-64 pb-20 -mt-40">
+          <div className="w-full max-w-[1240px] mx-auto flex flex-col">
+            {/* Left side */}
+            <div>
+              <h3 className="text-6xl font-medium leading-tight">Conheça como trabalhamos.</h3>
+              <p className="text-xl leading-relaxed mt-8 mb-16">Cada serviço é adaptado às necessidades individuais do seu amiguinho, proporcionando uma experiência única e personalizada. Confie no Oh My Dog para cuidar do seu pet com excelência e dedicação.</p>
+            </div>
+
+            {/* Right side */}
+            <div className="grid grid-cols-3 gap-8">
+              
+              <Card className="shadow-lg">
+              <CardHeader>
+                <div className="w-fit bg-[#7092BF] p-4 rounded-lg">
+                  <BsTicketDetailed className="h-9 w-9 text-[#F2F2F2]"/>
+                </div>
+                <CardTitle className="pt-6 text-2xl font-medium">1. Agendamento</CardTitle>
+              </CardHeader>
+
+              <CardContent>
+                <p className="text-base text-black leading-snug">
+                  Agende seus serviços no Oh My Dog e ofereça ao seu pet um cuidado personalizado e conveniente, com horários que se adequam à sua rotina.
+                </p>
+              </CardContent>
+              </Card>
+
+              <Card className="shadow-lg">
+              <CardHeader>
+                <div className="w-fit bg-[#7092BF] p-4 rounded-lg">
+                  <BsBicycle className="h-9 w-9 text-[#F2F2F2]"/>
+                </div>
+                <CardTitle className="pt-6 text-2xl font-medium">2. Levar ao Oh my Dog</CardTitle>
+              </CardHeader>
+
+              <CardContent>
+                <p className="text-base text-black leading-snug">
+                  Visite o pet-shop e traga seu amado pet para desfrutar de um atendimento especializado e acolhedor, proporcionando uma experiência tranquila e confortável.
+                </p>
+              </CardContent>
+              </Card>
+
+              <Card className="shadow-lg">
+              <CardHeader>
+                <div className="w-fit bg-[#7092BF] p-4 rounded-lg">
+                  <BsTicketDetailed className="h-9 w-9 text-[#F2F2F2]"/>
+                </div>
+                <CardTitle className="pt-6 text-2xl font-medium">3. Buscar o pet</CardTitle>
+              </CardHeader>
+
+              <CardContent>
+                <p className="text-base text-black leading-snug">
+                  Após o serviço, você irá buscar seu pet e levá-lo de volta para casa, garantindo sua comodidade e a continuidade do cuidado personalizado que oferecemos.
+                </p>
+              </CardContent>
               </Card>
 
             </div>
