@@ -3,7 +3,7 @@ import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMe
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useEffect, useState } from "react";
-import { BsArrowRight, BsBicycle, BsBoxArrowRight, BsBrush, BsDroplet, BsFillHouseFill, BsFillPersonFill, BsFlower1, BsGem, BsGiftFill, BsRepeat, BsScissors, BsTicketDetailed } from 'react-icons/bs'
+import { BsArrowRight, BsBicycle, BsBoxArrowRight, BsBrush, BsDroplet, BsEnvelopeFill, BsFillHouseFill, BsFillPersonFill, BsFlower1, BsGem, BsGeoFill, BsGiftFill, BsRepeat, BsScissors, BsTelephoneFill, BsTicketDetailed, BsWhatsapp } from 'react-icons/bs'
 import { FaPaw } from "react-icons/fa";
 
 
@@ -419,6 +419,41 @@ export function Home() {
             </div>
             
 
+          </div>
+        </section>
+
+        {/* Contact */}
+        <section>
+          <div className="w-full max-w-[1240px] mx-auto flex items-center justify-between">
+            {/* Texts */}
+            <div className="max-w-lg">
+              <h3 className="text-6xl font-medium leading-tight">Entre em contato com a gente!</h3>
+              <p className="text-xl leading-relaxed mt-8">
+                Entre em contato com o Oh my Dog, queremos tirar suas dúvidas.
+              </p>
+              <Button className="text-white text-xl flex items-center gap-4 px-8 py-6 mt-10 rounded-full bg-[#6583AC] hover:bg-[#5A7599]">
+                <BsWhatsapp />
+                Entrar em contato
+              </Button>
+            </div>
+
+            {/* Contact infos */}
+            <div className="grid gap-12 text-xl">
+              <p className="flex items-center gap-8">
+                <BsGeoFill className="text-[#7092BF]" />
+                Av. Eng. Carlos Reinaldo Mendes, 201
+              </p>
+
+              <p className="flex items-center gap-8">
+                <BsTelephoneFill className="text-[#7092BF]" />
+                15 9111-1111
+              </p>
+
+              <p className="flex items-center gap-8">
+                <BsEnvelopeFill className="text-[#7092BF]" />
+                contato@Ohmydog.com
+              </p>
+            </div>
           </div>
         </section>
       </main>
