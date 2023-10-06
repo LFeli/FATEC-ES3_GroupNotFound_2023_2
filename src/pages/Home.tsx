@@ -291,13 +291,13 @@ export function Home() {
         {/* How we work */}
         <section className="bg-[#EAEFF6] pt-64 pb-20 -mt-40">
           <div className="w-full max-w-[1240px] mx-auto flex flex-col">
-            {/* Left side */}
+            {/* Texts */}
             <div>
               <h3 className="text-6xl font-medium leading-tight">Conheça como trabalhamos.</h3>
               <p className="text-xl leading-relaxed mt-8 mb-16">Cada serviço é adaptado às necessidades individuais do seu amiguinho, proporcionando uma experiência única e personalizada. Confie no Oh My Dog para cuidar do seu pet com excelência e dedicação.</p>
             </div>
 
-            {/* Right side */}
+            {/* Cards */}
             <div className="grid grid-cols-3 gap-8">
               
               <Card className="shadow-lg">
@@ -346,6 +346,79 @@ export function Home() {
               </Card>
 
             </div>
+          </div>
+        </section>
+
+        {/* Testimonials */}
+        <section className="pt-20 pb-40">
+          <div className="w-full max-w-[1240px] mx-auto">
+            {/* Texts */}
+            <div>
+              <h3 className="text-6xl font-medium leading-tight text-center max-w-2xl mx-auto">Depoimento de quem já passou por aqui</h3>
+              <p className="text-xl leading-relaxed text-center mt-8 mb-20 max-w-6xl mx-auto">
+                Veja o que nossos clientes têm a dizer sobre o Oh My Dog! Leia os depoimentos e testemunhos de satisfação, onde os donos compartilham suas experiências positivas com nossos serviços. Venha fazer parte da nossa comunidade de clientes felizes e confie no Oh My Dog para cuidar do seu pet com excelência e carinho.
+              </p>
+            </div>
+
+            {/* Cards */}
+            <div className="grid grid-cols-2 gap-12">
+              
+              <Card className="shadow-lg">
+                <CardContent className="grid gap-6 px-10 py-8">
+                  <p className="text-base text-black leading-relaxed">
+                    "Estou extremamente satisfeito com os serviços prestados pelo Oh My Dog! A equipe foi incrível em todos os aspectos, desde o atendimento cordial até a habilidade profissional. Meu pet voltou para casa radiante e feliz após receber um banho e tosa excepcionais."
+                  </p>
+
+                  <div className="flex items-center gap-4">
+                    <img src="src/assets/home/user1.png" alt="" className="rounded-full"/>
+                    <span>Joe Paul</span>
+                  </div>
+                </CardContent>
+              </Card>
+              
+              <Card className="shadow-lg">
+                <CardContent className="grid gap-6 px-10 py-8">
+                  <p className="text-base text-black leading-relaxed">
+                    "Maravilhada com o resultado do tingimento de pelos que o Oh My Dog realizou no meu pet! A equipe foi extremamente profissional e cuidadosa, garantindo que o processo fosse seguro e confortável para o meu pet. O resultado final foi além das minhas expectativas."
+                  </p>
+
+                  <div className="flex items-center gap-4">
+                    <img src="src/assets/home/user2.png" alt="" className="rounded-full"/>
+                    <span>Larissa de Souza</span>
+                  </div>
+                </CardContent>
+              </Card>
+              
+              <Card className="shadow-lg">
+                <CardContent className="grid gap-6 px-10 py-8">
+                  <p className="text-base text-black leading-relaxed">
+                    "Fiquei absolutamente encantada com a experiência de spa que o meu pet teve no Oh My Dog! A equipe foi além das minhas expectativas, oferecendo um tratamento de luxo e bem-estar para o meu amado companheiro. Saímos do spa com um pet renovado e radiante."
+                  </p>
+
+                  <div className="flex items-center gap-4">
+                    <img src="src/assets/home/user3.png" alt="" className="rounded-full"/>
+                    <span>Bianca Aparecida</span>
+                  </div>
+                </CardContent>
+              </Card>
+              
+              <Card className="shadow-lg">
+                <CardContent className="grid gap-6 px-10 py-8">
+                  <p className="text-base text-black leading-relaxed">
+                    "Impressionado com a qualidade da tosa que o Oh My Dog realizou no meu pet! A equipe demonstrou habilidade excepcional e cuidado minucioso durante todo o processo. Meu pet voltou para casa com um visual impecável, com pelos bem aparados."
+                  </p>
+
+                  <div className="flex items-center gap-4">
+                    <img src="src/assets/home/user4.png" alt="" className="rounded-full"/>
+                    <span>Anderson Pereira</span>
+                  </div>
+                </CardContent>
+              </Card>
+
+
+            </div>
+            
+
           </div>
         </section>
       </main>
