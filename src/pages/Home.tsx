@@ -1,8 +1,9 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useEffect, useState } from "react";
-import { BsBoxArrowRight, BsFillHouseFill, BsFillPersonFill, BsGiftFill } from 'react-icons/bs'
+import { BsArrowRight, BsBoxArrowRight, BsBrush, BsDroplet, BsFillHouseFill, BsFillPersonFill, BsFlower1, BsGem, BsGiftFill, BsRepeat, BsScissors } from 'react-icons/bs'
 import { FaPaw } from "react-icons/fa";
 
 
@@ -38,7 +39,7 @@ export function Home() {
     <>
       <header
       data-scrolled={scrolled}
-      className={`w-full h-20 fixed z-20 transition-colors duration-150 bg-[#7092BF] data-[scrolled="true"]:border-b-2 border-white`}
+      className={`w-full h-20 fixed z-50 transition-colors duration-150 bg-[#7092BF] data-[scrolled="true"]:border-b-2 border-white`}
     >
         <NavigationMenu className="h-full w-full max-w-[1240px] flex items-center justify-between mx-auto">
           <NavigationMenuLink href="#">
@@ -142,7 +143,7 @@ export function Home() {
         </NavigationMenu>
       </header>
 
-      <main className="pt-20">
+      <main className="pt-20 bg-[#F2F2F2]">
         {/* Hero */}
         <section className="relative">
           <div className="flex">
@@ -162,10 +163,130 @@ export function Home() {
             </div>
 
             {/* background */}
-            <div className="absolute top-0 left-0 h-[140%] w-full bg-[#7092BF]" />
+            <div className="absolute top-0 left-0 h-[130%] w-full bg-[#7092BF]" />
           </div>
         </section>
 
+        {/* Services */}
+        <section className="relative z-20 bg-[#FCFCFC] mt-20 mx-8 rounded-[40px]">
+          <div className="w-full max-w-[1240px] mx-auto py-16">
+            <h2 className="text-6xl font-medium leading-tight max-w-3xl">Serviços que oferecemos ao seu pet.</h2>
+            <p className="text-2xl leading-relaxed max-w-5xl mt-8 mb-16">Descubra os serviços excepcionais do Oh My Dog! Oferecemos banho, tosa, spa e muito mais. Nossa equipe dedicada garantirá que seu pet receba o melhor tratamento.</p>
+
+            {/* cards */}
+            <div className="grid grid-cols-3 grid-rows-2 gap-11">
+
+              <Card className="shadow-lg">
+                <CardHeader>
+                  <div className="w-fit bg-[#7092BF] p-4 rounded-lg">
+                    <BsDroplet className="h-9 w-9 text-[#F2F2F2]"/>
+                  </div>
+                  <CardTitle className="py-6 text-2xl font-medium">Banho</CardTitle>
+                  <CardDescription className="text-base text-black leading-snug">Serviço de banho especializado para garantir que o seu pet receba cuidados de higiene e se sinta revigorado</CardDescription>
+                </CardHeader>
+
+                <CardContent>
+                  <Button variant={"link"} className="text-xl p-0 flex items-center justify-center gap-3">
+                    Ver mais
+
+                    <BsArrowRight className="h-5 w-5"/>
+                  </Button>
+                </CardContent>
+              </Card>
+              
+              <Card className="shadow-lg">
+                <CardHeader>
+                  <div className="w-fit bg-[#7092BF] p-4 rounded-lg">
+                    <BsScissors className="h-9 w-9 text-[#F2F2F2]"/>
+                  </div>
+                  <CardTitle className="py-6 text-2xl font-medium">Tosa</CardTitle>
+                  <CardDescription className="text-base text-black leading-snug">No Oh My Dog, oferecemos um serviço de tosa profissional para deixar o seu pet com um visual impecável.</CardDescription>
+                </CardHeader>
+
+                <CardContent>
+                  <Button variant={"link"} className="text-xl p-0 flex items-center justify-center gap-3">
+                    Ver mais
+
+                    <BsArrowRight className="h-5 w-5"/>
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card className="shadow-lg">
+                <CardHeader>
+                  <div className="w-fit bg-[#7092BF] p-4 rounded-lg">
+                    <BsGem className="h-9 w-9 text-[#F2F2F2]"/>
+                  </div>
+                  <CardTitle className="py-6 text-2xl font-medium">Tosa Higiênica</CardTitle>
+                  <CardDescription className="text-base text-black leading-snug">serviço de tosa higiênica para assegurar o máximo conforto e higiene do seu tanto amado pet.</CardDescription>
+                </CardHeader>
+
+                <CardContent>
+                  <Button variant={"link"} className="text-xl p-0 flex items-center justify-center gap-3">
+                    Ver mais
+
+                    <BsArrowRight className="h-5 w-5"/>
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card className="shadow-lg">
+                <CardHeader>
+                  <div className="w-fit bg-[#7092BF] p-4 rounded-lg">
+                    <BsFlower1 className="h-9 w-9 text-[#F2F2F2]"/>
+                  </div>
+                  <CardTitle className="py-6 text-2xl font-medium">Spa</CardTitle>
+                  <CardDescription className="text-base text-black leading-snug">Serviços de spa especiais para proporcionar momentos de relaxamento e cuidados extras ao seu querido pet</CardDescription>
+                </CardHeader>
+
+                <CardContent>
+                  <Button variant={"link"} className="text-xl p-0 flex items-center justify-center gap-3">
+                    Ver mais
+
+                    <BsArrowRight className="h-5 w-5"/>
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card className="shadow-lg">
+                <CardHeader>
+                  <div className="w-fit bg-[#7092BF] p-4 rounded-lg">
+                    <BsBrush className="h-9 w-9 text-[#F2F2F2]"/>
+                  </div>
+                  <CardTitle className="py-6 text-2xl font-medium">Tingimentos de pelos</CardTitle>
+                  <CardDescription className="text-base text-black leading-snug">Exclusivo serviço de tingimento de pelos para deixar o seu pet com um visual único e estiloso.</CardDescription>
+                </CardHeader>
+
+                <CardContent>
+                  <Button variant={"link"} className="text-xl p-0 flex items-center justify-center gap-3">
+                    Ver mais
+
+                    <BsArrowRight className="h-5 w-5"/>
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card className="shadow-lg">
+                <CardHeader>
+                  <div className="w-fit bg-[#7092BF] p-4 rounded-lg">
+                    <BsRepeat className="h-9 w-9 text-[#F2F2F2]"/>
+                  </div>
+                  <CardTitle className="py-6 text-2xl font-medium">Aluguel de equipamentos</CardTitle>
+                  <CardDescription className="text-base text-black leading-snug">Oferecemos um serviço dedicado ao aluguel de equipamentos e aparatos para seu pet, como gaiolas de transportes, carrinho e etc.</CardDescription>
+                </CardHeader>
+
+                <CardContent>
+                  <Button variant={"link"} className="text-xl p-0 flex items-center justify-center gap-3">
+                    Ver mais
+
+                    <BsArrowRight className="h-5 w-5"/>
+                  </Button>
+                </CardContent>
+              </Card>
+
+            </div>
+          </div>
+        </section>
       </main>
     </>
   )
