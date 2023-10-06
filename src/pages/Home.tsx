@@ -3,7 +3,7 @@ import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMe
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useEffect, useState } from "react";
-import { BsArrowRight, BsBicycle, BsBoxArrowRight, BsBrush, BsDroplet, BsEnvelopeFill, BsFillHouseFill, BsFillPersonFill, BsFlower1, BsGem, BsGeoFill, BsGiftFill, BsRepeat, BsScissors, BsTelephoneFill, BsTicketDetailed, BsWhatsapp } from 'react-icons/bs'
+import { BsArrowRight, BsArrowUp, BsBicycle, BsBoxArrowRight, BsBrush, BsDroplet, BsEnvelopeFill, BsFacebook, BsFillHouseFill, BsFillPersonFill, BsFlower1, BsGem, BsGeoFill, BsGiftFill, BsInstagram, BsRepeat, BsScissors, BsTelephoneFill, BsTicketDetailed, BsTiktok, BsWhatsapp } from 'react-icons/bs'
 import { FaPaw } from "react-icons/fa";
 
 
@@ -143,7 +143,7 @@ export function Home() {
         </NavigationMenu>
       </header>
 
-      <main className="pt-20 bg-[#F2F2F2]">
+      <main className="pt-20 bg-[#F2F2F2]" id="home">
         {/* Hero */}
         <section className="relative">
           <div className="flex">
@@ -423,7 +423,7 @@ export function Home() {
         </section>
 
         {/* Contact */}
-        <section>
+        <section className="pb-32">
           <div className="w-full max-w-[1240px] mx-auto flex items-center justify-between">
             {/* Texts */}
             <div className="max-w-lg">
@@ -457,6 +457,40 @@ export function Home() {
           </div>
         </section>
       </main>
+
+      <footer className="bg-[#7092BF] text-white py-20 text-xl">
+        <div className="w-full max-w-[1240px] mx-auto flex items-center justify-between">
+          {/* Copyright */}
+          <div className="flex flex-col gap-2">
+            <span>@2023 Oh my dog</span>
+            <span>Todos os direitos reservados</span>
+          </div>
+
+          {/* social medias */}
+          <div className="flex">
+            <div className="flex gap-4 mr-10">
+                <Button variant={"ghost"} className="py-6 hover:bg-[#435873] hover:text-white">
+                  <BsInstagram className="w-4 h-4"/>
+                </Button>
+
+                <Button variant={"ghost"} className="py-6 hover:bg-[#435873] hover:text-white">
+                  <BsTiktok className="w-4 h-4"/>
+                </Button>
+
+                <Button variant={"ghost"} className="py-6 hover:bg-[#435873] hover:text-white">
+                  <BsFacebook className="w-4 h-4"/>
+                </Button>
+            </div>
+
+            {/* Back to top */}
+            <a href="#home">
+              <Button variant={"ghost"} className="py-6 hover:bg-[#435873] hover:text-white">
+                <BsArrowUp className="w-4 h-4"/>
+              </Button>
+            </a>
+          </div>
+        </div>
+      </footer>
     </>
   )
 }
