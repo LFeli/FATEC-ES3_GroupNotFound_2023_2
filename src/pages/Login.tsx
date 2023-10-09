@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
@@ -8,7 +8,17 @@ import { z } from "zod";
 
 
 const formSchema = z.object({
-  username: z.string().min(2).max(50),
+  email: z.string().nonempty({
+    message: 'O campo E-mail e obrigatório'  
+  }).email({
+    message: 'Formato do E-mail inválido'
+  }),
+
+  password: z.string().nonempty({
+    message: 'O campo Senha e obrigatório'
+  }).min(6, {
+    message: 'O campo Senha precisa de no mínimo 6 caracteres'
+  }),
 })
 
 export function Login() {
@@ -16,9 +26,6 @@ export function Login() {
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      username: "",
-    },
   })
  
   function onSubmit(values: z.infer<typeof formSchema>) {
@@ -41,31 +48,61 @@ export function Login() {
       <div className="grid grid-cols-2 h-screen w-full bg-[#F2F2F2]">
       
         {/* left side */}
-        <div>
-          <main>
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <div className='flex flex-col items-center justify-center overflow-y-auto w-full'>
+          <main className='max-w-[480px] w-full grid gap-12'>
+            {/* Texts */}
+            <div className="space-y-5">
+              <h1 className="text-3xl font-semibold">Faça login para continuar</h1>
+              <p className="font-medium">Sua jornada com seu pet começa aqui.</p>
+            </div>
 
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-12">
+
+                {/* email field  */}
                 <FormField
                   control={form.control}
-                  name="username"
+                  name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Username</FormLabel>
+                      <FormLabel>E-mail</FormLabel>
                       <FormControl>
-                        <Input placeholder="shadcn" {...field} />
+                        <Input 
+                          placeholder="seuemail@email.com" {...field} 
+                          className="py-6 rounded-lg border-2 border-zinc-400 hover:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500"
+                        />
                       </FormControl>
-                      <FormDescription>
-                        This is your public display name.
-                      </FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
 
-                <Button type="submit">Submit</Button>
+                {/* password field  */}
+                <FormField
+                  control={form.control}
+                  name="password"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Senha</FormLabel>
+                      <FormControl>
+                        <Input 
+                          placeholder="Sua senha..." {...field} 
+                          className="py-6 rounded-lg border-2 border-zinc-400 hover:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <Button type="submit" className="w-full bg-blue-500 py-6 hover:bg-blue-700">Submit</Button>
               </form>
             </Form>
+
+            <span className="font-medium mx-auto">
+              Não tem uma conta?  
+              <a href="#" className="font-bold text-blue-500 transition-colors hover:text-blue-700 hover:underline"> Inscreva-se </a>
+            </span>
 
             <pre>{output}</pre>
           </main>
