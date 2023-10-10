@@ -1,11 +1,40 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
-import { useState, useEffect } from "react";
-import { BsArrowUp, BsBoxArrowRight, BsFacebook, BsFillHouseFill, BsFillPersonFill, BsGiftFill, BsInstagram, BsTiktok } from "react-icons/bs";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { BsArrowLeft, BsArrowUp, BsBoxArrowRight, BsFacebook, BsFillHouseFill, BsFillPersonFill, BsGiftFill, BsInstagram, BsTiktok } from "react-icons/bs";
 import { FaPaw } from "react-icons/fa";
+import { z } from "zod";
+
+const formSchema = z.object({
+  name: z.string(),
+  typeAnimal: z.string(),
+  weight: z.string(),
+  humor: z.string(),
+  color: z.string(),
+  sex: z.string(),
+  specialCare: z.string(),
+  gelded: z.boolean().optional(),
+})
+
 
 export function PetPerfil(){
+  const petName = "Caramelo"
+  const petSpecie = "Cachorro"
+  const petWeight = "12"
+  const petHumor = "Calmo"
+  const petColor = "Marrom"
+  const petSex = "Macho"
+  const petSpecialCare = ""
+  const petGelded = true
+
   const userName = 'Bianca Carvalho';
   const userFirstName = userName.split(' ')[0];
   const userAbbreviation = userName
@@ -13,30 +42,31 @@ export function PetPerfil(){
   .slice(0, 2)
   .map(nome => nome.charAt(0))
   .join('');
-  
-  const [scrolled, setScrolled] = useState(false);
-  
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
 
-    window.addEventListener('scroll', handleScroll);
+  const[output, setOutput] = useState('')
 
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: petName,
+      typeAnimal: petSpecie,
+      weight: petWeight,
+      humor: petHumor,
+      color: petColor,
+      sex: petSex,
+      specialCare: petSpecialCare,
+      gelded: petGelded,
+    }
+  })
+ 
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    setOutput(JSON.stringify(values, null, 2))
+  }
 
   return(
     <>
       <header
-      data-scrolled={scrolled}
-      className={`w-full h-20 fixed z-50 transition-colors duration-150 bg-[#7092BF] data-[scrolled="true"]:border-b-2 border-white`}
+      className={`w-full h-20 fixed z-50 transition-colors duration-150 bg-[#7092BF]`}
     >
       <NavigationMenu className="h-full w-full max-w-[1240px] flex items-center justify-between mx-auto">
         <NavigationMenuLink href="#">
@@ -141,7 +171,233 @@ export function PetPerfil(){
       </header>
 
       <main className="pt-20 bg-[#F2F2F2]" id="home">
-        Conteúdo da main
+        <div className="w-full max-w-[1240px] mx-auto">
+          
+          {/* Back button */}
+          <div className="py-10">
+            <a href="#">
+              <Button variant={"ghost"} className="flex items-center gap-5 py-5 hover:bg-blue-400/25">
+                <BsArrowLeft />
+                Voltar
+              </Button>
+            </a>
+          </div>
+
+          {/* Texts */}
+          <div className="space-y-4">
+          <h1 className="text-6xl font-medium leading-tight">Perfil do {petName}</h1>
+          <p className="text-xl leading-relaxed">Todas as informações sobre o {petName}.</p>
+          </div>
+
+          {/* Form section */}
+          <section className="max-w-xl mx-auto pt-20">
+            <h2 className="text-3xl font-medium leading-tight">Dados do pet</h2>
+
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-10 pt-6">
+
+                {/* Pet name field  */}
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Nome do pet</FormLabel>
+                      <FormControl>
+                        <Input 
+                          placeholder={petName} {...field} 
+                          className="py-6 rounded-lg border-2 border-zinc-400 hover:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                {/* type of animal field  */}
+                <FormField
+                  control={form.control}
+                  name="typeAnimal"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Espécie do pet</FormLabel>
+
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+
+                        <FormControl>
+                          <SelectTrigger className="py-6 rounded-lg border-2 border-zinc-400 hover:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500">
+                            <SelectValue placeholder={petSpecie} />
+                          </SelectTrigger>
+                        </FormControl>
+
+                        <SelectContent>
+                          <SelectItem value="Cachorro">Cachorro</SelectItem>
+                          <SelectItem value="Gato">Gato</SelectItem>
+                          <SelectItem value="Peixe">Peixe</SelectItem>
+                          <SelectItem value="Pássaro">Pássaro</SelectItem>
+                          <SelectItem value="Roedor">Roedor</SelectItem>
+                          <SelectItem value="Coelho">Coelho</SelectItem>
+                          <SelectItem value="Furão">Furão</SelectItem>
+                        </SelectContent>
+
+                      </Select>
+
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                {/* Weight of animal field */}
+                <FormField
+                  control={form.control}
+                  name="weight"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Peso (Em KG)</FormLabel>
+                      <FormControl>
+                        <Input 
+                          placeholder={petWeight} {...field} 
+                          className="py-6 rounded-lg border-2 border-zinc-400 hover:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                {/* Humor of pet field */}
+                <FormField
+                  control={form.control}
+                  name="humor"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Temperamento</FormLabel>
+
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+
+                        <FormControl>
+                          <SelectTrigger className="py-6 rounded-lg border-2 border-zinc-400 hover:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500">
+                            <SelectValue placeholder={petHumor} />
+                          </SelectTrigger>
+                        </FormControl>
+
+                        <SelectContent>
+                          <SelectItem value="Calmo">Calmo</SelectItem>
+                          <SelectItem value="Ativo">Ativo</SelectItem>
+                          <SelectItem value="Amigável">Amigável</SelectItem>
+                          <SelectItem value="Tímido">Tímido</SelectItem>
+                          <SelectItem value="Agressivo">Agressivo</SelectItem>
+                          <SelectItem value="Brincalhão">Brincalhão</SelectItem>
+                          <SelectItem value="Independente">Independente</SelectItem>
+                          <SelectItem value="Carinhoso">Carinhoso</SelectItem>
+                          <SelectItem value="Sociável">Sociável</SelectItem>
+                          <SelectItem value="Ansioso">Ansioso</SelectItem>
+                          <SelectItem value="Tranquilo">Tranquilo</SelectItem>
+                          <SelectItem value="Curioso">Curioso</SelectItem>
+                        </SelectContent>
+
+                      </Select>
+
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                {/* Wrapper two fields */}
+                <div className="grid grid-cols-2 gap-7"> 
+
+                  {/* Pet color field */}
+                  <FormField
+                    control={form.control}
+                    name="color"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Cor</FormLabel>
+                        <FormControl>
+                          <Input 
+                            placeholder={petColor} {...field} 
+                            className="py-6 rounded-lg border-2 border-zinc-400 hover:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  {/* Pet sexs field */}
+                  <FormField
+                    control={form.control}
+                    name="sex"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Sexo</FormLabel>
+
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+
+                          <FormControl>
+                            <SelectTrigger className="py-6 rounded-lg border-2 border-zinc-400 hover:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500">
+                              <SelectValue placeholder={petSex} />
+                            </SelectTrigger>
+                          </FormControl>
+
+                          <SelectContent>
+                            <SelectItem value="Macho">Macho</SelectItem>
+                            <SelectItem value="Femea">Femeá</SelectItem>
+                            <SelectItem value="Indefinido">Indefinido</SelectItem>
+                          </SelectContent>
+
+                        </Select>
+
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                </div>
+
+                {/* Special care from pet fields */}
+                <FormField
+                  control={form.control}
+                  name="specialCare"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Algum cuidado extra que precisamos ter? (Opcional) </FormLabel>
+                      <FormControl>
+                        <Textarea 
+                          placeholder="Digite aqui os cuidados especiais que devemos ter com seu pet"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                {/* Gelded pet fields */}
+                <FormField
+                  control={form.control}
+                  name="gelded"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-row-reverse items-center justify-end gap-3 h-5 space-y-0">
+                      <FormLabel className="">Seu pet e castrado? Se sim deixe essa opção marcada.</FormLabel>
+                      <FormControl>
+                        <Checkbox
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <Button type="submit" className="w-full bg-blue-500 py-6 hover:bg-blue-700">Salvar</Button>
+              </form>
+            </Form>
+
+            <pre>{output}</pre>
+          </section>
+        </div>
       </main>
 
       <footer className="bg-[#7092BF] text-white py-20 text-xl">
