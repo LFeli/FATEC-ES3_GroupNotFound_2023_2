@@ -1,3 +1,4 @@
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -5,6 +6,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
@@ -170,7 +172,7 @@ export function PetPerfil(){
       </NavigationMenu>
       </header>
 
-      <main className="pt-20 bg-[#F2F2F2]" id="home">
+      <main className="py-20 bg-[#F2F2F2]" id="home">
         <div className="w-full max-w-[1240px] mx-auto">
           
           {/* Back button */}
@@ -397,10 +399,40 @@ export function PetPerfil(){
 
             <pre>{output}</pre>
           </section>
+
+          <Separator className="my-20 bg-[#B4B2B0]"/>
+
+          <section className="max-w-xl mx-auto space-y-8 text-red-900">
+            <h2 className="text-3xl font-medium leading-tight">Área de risco</h2>
+            <p className="font-medium">
+              Uma vez que sua conta seja excluída, todos os seus dados e informações associadas a ela serão permanentemente removidos.
+            </p>
+
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button variant={"destructive"} className="w-full py-6 bg-red-500 hover:bg-red-700">Excluir o pet</Button>
+              </AlertDialogTrigger>
+                    
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Você tem certeza absoluta que deseja excluir esse pet?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    Essa ação e irreversível e não poderá ser desfeita.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+
+                <AlertDialogFooter>
+                  <AlertDialogCancel className="hover:bg-blue-400/25">Cancelar</AlertDialogCancel>
+                  <AlertDialogAction className="bg-red-500 hover:bg-red-700">Excluir</AlertDialogAction>
+                </AlertDialogFooter>
+
+              </AlertDialogContent>
+            </AlertDialog>
+          </section>
         </div>
       </main>
 
-      <footer className="bg-[#7092BF] text-white py-20 text-xl">
+      <footer className="bg-blue-400 text-white py-10 text-xl">
         <div className="w-full max-w-[1240px] mx-auto flex items-center justify-between">
           {/* Copyright */}
           <div className="flex flex-col gap-2">
@@ -411,15 +443,15 @@ export function PetPerfil(){
           {/* social medias */}
           <div className="flex">
             <div className="flex gap-4 mr-10">
-                <Button variant={"ghost"} className="py-6 hover:bg-[#435873] hover:text-white">
+                <Button variant={"ghost"} className="py-6 hover:bg-blue-700 hover:text-white">
                   <BsInstagram className="w-4 h-4"/>
                 </Button>
 
-                <Button variant={"ghost"} className="py-6 hover:bg-[#435873] hover:text-white">
+                <Button variant={"ghost"} className="py-6 hover:bg-blue-700 hover:text-white">
                   <BsTiktok className="w-4 h-4"/>
                 </Button>
 
-                <Button variant={"ghost"} className="py-6 hover:bg-[#435873] hover:text-white">
+                <Button variant={"ghost"} className="py-6 hover:bg-blue-700 hover:text-white">
                   <BsFacebook className="w-4 h-4"/>
                 </Button>
             </div>
