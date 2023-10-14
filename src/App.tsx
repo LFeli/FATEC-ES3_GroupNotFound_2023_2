@@ -1,7 +1,9 @@
-import { Home } from "./pages/Home";
+import { Outlet } from "react-router-dom";
 
-export function App() {
-  return (
-    <Home />
+export function App(){
+  return(
+    <>
+      <Outlet />
+    </>
   )
 }
