@@ -5,36 +5,78 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { useEffect, useState } from "react";
 import { BsArrowRight, BsArrowUp, BsBicycle, BsBoxArrowRight, BsBrush, BsDroplet, BsEnvelopeFill, BsFacebook, BsFillHouseFill, BsFillPersonFill, BsFlower1, BsGem, BsGeoFill, BsGiftFill, BsInstagram, BsRepeat, BsScissors, BsTelephoneFill, BsTicketDetailed, BsTiktok, BsWhatsapp } from 'react-icons/bs'
 import { FaPaw } from "react-icons/fa";
+import Cookies from 'js-cookie';
+import params from "../params.json";
 
 
 export function Home() {
-  const userName = 'Bianca Carvalho';
+  const [userName, setUserName] = useState('');
   const userFirstName = userName.split(' ')[0];
-  const userAbbreviation = userName
-  .split(' ')
-  .slice(0, 2)
-  .map(nome => nome.charAt(0))
-  .join('');
-  
-    const [scrolled, setScrolled] = useState(false);
-  
-    useEffect(() => {
-      const handleScroll = () => {
-        if (window.scrollY > 10) {
-          setScrolled(true);
-        } else {
-          setScrolled(false);
-        }
-      };
-  
-      window.addEventListener('scroll', handleScroll);
-  
-      return () => {
-        window.removeEventListener('scroll', handleScroll);
-      };
-    }, []);
 
-  
+  var userAbbreviation = userName
+    .split(' ')
+    .slice(0, 2)
+    .map(nome => nome.charAt(0))
+    .join('');
+
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+
+    const codCliente = Cookies.get('codCliente');
+    if (!codCliente) {
+      alert('Seção expirada, por favor realize o login novamente');
+      window.location.href = '/login';
+    }
+
+    const fetchData = async () => {
+      const codCliente = Cookies.get('codCliente');
+      if (!codCliente) {
+        alert('Seção expirada, por favor realize o login novamente');
+        window.location.href = '/login';
+        return; // Retorna para evitar a execução do código abaixo em caso de erro.
+      }
+
+      try {
+        const response = await fetch(params.APIRoutePrefix + 'Clientes/Cliente/' + codCliente, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setUserName(data.nome);
+
+        } else {
+          alert(response.status);
+        }
+      } catch (error) {
+        alert('Ocorreu um erro ao fazer a solicitação, por favor realize o login novamente');
+        console.log('Erro ao buscar endereço:', error);
+      }
+    };
+
+    fetchData();
+
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+    
+  }, []);
+
+
   return (
     <>
       <header

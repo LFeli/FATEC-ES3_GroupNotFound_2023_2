@@ -2,10 +2,11 @@ import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-
+import Cookies from 'js-cookie';
+import params from "../params.json";
 
 const formSchema = z.object({
   email: z.string().nonempty({
@@ -22,14 +23,45 @@ const formSchema = z.object({
 })
 
 export function Login() {
+
+  useEffect(() => {
+    Cookies.remove('codCliente');
+  }, []);
+
   const[output, setOutput] = useState('')
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   })
- 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    setOutput(JSON.stringify(values, null, 2))
+  
+  const onSubmit = async (data: any) => {
+    try {
+
+      const requestBody = {
+        email: data.email,
+        senha: data.password
+      };
+
+      const response = await fetch(params.APIRoutePrefix + 'Clientes/LoginCliente', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestBody)
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+  
+        Cookies.set('codCliente', data.codCliente, { expires: 1 });
+        window.location.href = "/";
+
+      } else {
+        alert(response.status);
+      }
+    } catch (error) {
+      console.log('Erro ao buscar endereço:', error);
+    }
   }
 
   return (

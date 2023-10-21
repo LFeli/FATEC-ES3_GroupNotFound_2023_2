@@ -14,6 +14,7 @@ import { useForm } from "react-hook-form";
 import { BsArrowLeft, BsArrowUp, BsBoxArrowRight, BsFacebook, BsFillHouseFill, BsFillPersonFill, BsGiftFill, BsInstagram, BsTiktok } from "react-icons/bs";
 import { FaPaw } from "react-icons/fa";
 import { z } from "zod";
+import Cookies from 'js-cookie';
 
 const formSchema = z.object({
   name: z.string(),
