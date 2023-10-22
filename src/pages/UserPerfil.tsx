@@ -9,6 +9,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Separator } from "@/components/ui/separator";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 
 const pessoalDataFormSchema = z.object({
   name: z.string(),
@@ -398,6 +400,44 @@ export function UserPerfil() {
             </Form>
           </section>
 
+          <Separator className="my-20 bg-[#B4B2B0]"/>
+          
+          {/* My pet list */}
+          <section className="max-w-xl mx-auto">
+            <h2 className="text-3xl font-medium leading-tight">Meus pets</h2>
+
+          </section>
+
+          <Separator className="my-20 bg-[#B4B2B0]"/>
+
+          {/* Delete account */}
+          <section className="max-w-xl mx-auto space-y-8 text-red-900">
+            <h2 className="text-3xl font-medium leading-tight">Área de risco</h2>
+            <p className="font-medium">
+              Uma vez que sua conta seja excluída, todos os seus dados e informações associadas a ela serão permanentemente removidos.
+            </p>
+
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button variant={"destructive"} className="w-full py-6 bg-red-500 hover:bg-red-700">Excluir conta</Button>
+              </AlertDialogTrigger>
+                    
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Você tem certeza absoluta que deseja excluir a sua conta?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    Essa ação e irreversível e não poderá ser desfeita.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+
+                <AlertDialogFooter className="pt-4">
+                  <AlertDialogCancel className="hover:bg-blue-400/25">Cancelar</AlertDialogCancel>
+                  <AlertDialogAction className="bg-red-500 hover:bg-red-700">Excluir</AlertDialogAction>
+                </AlertDialogFooter>
+
+              </AlertDialogContent>
+            </AlertDialog>
+          </section>
         </div>
       </main>
 
