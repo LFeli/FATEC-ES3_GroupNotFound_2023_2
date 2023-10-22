@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { NavigationMenu, NavigationMenuLink, NavigationMenuList, NavigationMenuItem, NavigationMenuTrigger, NavigationMenuContent } from "@/components/ui/navigation-menu";
-import { BsFillHouseFill, BsFillPersonFill, BsGiftFill, BsBoxArrowRight } from "react-icons/bs";
+import { BsFillHouseFill, BsFillPersonFill, BsGiftFill, BsBoxArrowRight, BsInstagram, BsArrowUp, BsFacebook, BsTiktok, BsArrowLeft } from "react-icons/bs";
 import { FaPaw } from "react-icons/fa";
 
 export function UserPerfil() {
@@ -118,6 +118,56 @@ export function UserPerfil() {
           </NavigationMenuItem>
         </NavigationMenu>
       </header>
+
+      <main className="py-20 bg-[#F2F2F2]" id="initial">
+        <div className="w-full max-w-[1240px] mx-auto">
+
+          {/* Back button */}
+          <div className="py-10">
+            <a href="#">
+              <Button variant={"ghost"} className="flex items-center gap-5 py-5 hover:bg-blue-400/25">
+                <BsArrowLeft />
+                Voltar
+              </Button>
+            </a>
+          </div>
+
+        </div>
+      </main>
+
+      <footer className="bg-blue-400 text-white py-10 text-xl">
+        <div className="w-full max-w-[1240px] mx-auto flex items-center justify-between">
+          {/* Copyright */}
+          <div className="flex flex-col gap-2">
+            <span>@2023 Oh my dog</span>
+            <span>Todos os direitos reservados</span>
+          </div>
+
+          {/* social medias */}
+          <div className="flex">
+            <div className="flex gap-4 mr-10">
+                <Button variant={"ghost"} className="py-6 hover:bg-blue-700 hover:text-white">
+                  <BsInstagram className="w-4 h-4"/>
+                </Button>
+
+                <Button variant={"ghost"} className="py-6 hover:bg-blue-700 hover:text-white">
+                  <BsTiktok className="w-4 h-4"/>
+                </Button>
+
+                <Button variant={"ghost"} className="py-6 hover:bg-blue-700 hover:text-white">
+                  <BsFacebook className="w-4 h-4"/>
+                </Button>
+            </div>
+
+            {/* Back to top */}
+            <a href="#initial">
+              <Button variant={"ghost"} className="py-6 hover:bg-[#435873] hover:text-white">
+                <BsArrowUp className="w-4 h-4"/>
+              </Button>
+            </a>
+          </div>
+        </div>
+      </footer>
     </>
   )
 }
