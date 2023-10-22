@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { NavigationMenu, NavigationMenuLink, NavigationMenuList, NavigationMenuItem, NavigationMenuTrigger, NavigationMenuContent } from "@/components/ui/navigation-menu";
-import { BsFillHouseFill, BsFillPersonFill, BsGiftFill, BsBoxArrowRight, BsInstagram, BsArrowUp, BsFacebook, BsTiktok, BsArrowLeft } from "react-icons/bs";
+import { BsFillHouseFill, BsFillPersonFill, BsGiftFill, BsBoxArrowRight, BsInstagram, BsArrowUp, BsFacebook, BsTiktok, BsArrowLeft, BsImage, BsPlus } from "react-icons/bs";
 import { FaPaw } from "react-icons/fa";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
@@ -13,7 +13,6 @@ import { Separator } from "@/components/ui/separator";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 
 const pessoalDataFormSchema = z.object({
-  // User base data
   name: z.string(),
   cpf: z.string(),
   birthday: z.string(),
@@ -26,8 +25,16 @@ const pessoalDataFormSchema = z.object({
   cep: z.string(),
 })
 
+const AlturaNaoInformadaComponent = () => {
+  return (
+    <div className="w-[160px] h-[160px] bg-blue-400 rounded-full group-hover:outline outline-4 outline-emerald-700 group-hover:bg-blue-500 transition-colors flex items-center justify-center">
+      <BsImage className="w-10 h-10 text-white"/>
+    </div>
+  );
+};
 
 export function UserPerfil() {
+  // User base data
   const userName = 'Bianca Carvalho';
   const userCPF = "111.222.333-01";
   const userBirthday = "15/04/1999";
@@ -38,6 +45,20 @@ export function UserPerfil() {
   const userNumber = "2015";
   const userPublicPlace = "Em cima do clube de campo";
   const userCEP = "18013-280";
+
+  // Pet base data
+  const pets = [
+    {
+      nomeDoPet: "Caramelo",
+      fotoDoPet: "src/assets/animals/user-1.jpg",
+      link: "/pet-perfil"
+    },
+    {
+      nomeDoPet: "Floquinho",
+      fotoDoPet: false,
+      link: "/pet-212121-user212"
+    },
+  ];
 
   // Name formats
   const userFirstName = userName.split(' ')[0];
@@ -67,7 +88,6 @@ export function UserPerfil() {
 
   const[output, setOutput] = useState('')
 
-
   function onSubmit(values: z.infer<typeof pessoalDataFormSchema>) {
     setOutput(JSON.stringify(values, null, 2))
   }
@@ -76,7 +96,7 @@ export function UserPerfil() {
     <>
       <header  className={`w-full h-20 fixed z-50 transition-colors duration-150 bg-blue-300`}>
         <NavigationMenu className="h-full w-full max-w-[1240px] flex items-center justify-between mx-auto">
-          <NavigationMenuLink href="#">
+          <NavigationMenuLink href="/">
             <img src="./logo.svg" alt="Logo do pet-shop Oh My Dog" />
           </NavigationMenuLink>
 
@@ -136,21 +156,21 @@ export function UserPerfil() {
             <NavigationMenuContent className="p-4 ">
               <ul className="flex flex-col gap-3 w-48">
 
-                <NavigationMenuLink href="#">
+                <NavigationMenuLink href="/">
                   <Button variant={"ghost"} className="w-full flex items-center justify-start gap-4 hover:bg-blue-300/25">
                     <BsFillHouseFill className="w-4 h-4" />
                     Home
                   </Button>
                 </NavigationMenuLink>
                 
-                <NavigationMenuLink href="#">
+                <NavigationMenuLink href="/user-perfil">
                   <Button variant={"ghost"} className="w-full flex items-center justify-start gap-4 hover:bg-blue-300/25">
                     <BsFillPersonFill className="w-4 h-4" />
                     Meu perfil
                   </Button>
                 </NavigationMenuLink>
 
-                <NavigationMenuLink href="#">
+                <NavigationMenuLink href="/user-perfil#petList">
                   <Button variant={"ghost"} className="w-full flex items-center justify-start gap-4 hover:bg-blue-300/25">
                     <FaPaw className="w-4 h-4" />
                     Meus pets
@@ -192,7 +212,7 @@ export function UserPerfil() {
 
           {/* Texts */}
           <div className="space-y-4">
-            <h1 className="text-6xl font-medium leading-tight">Olá, Bianca seja bem-vindo(a) ao seu perfil.</h1>
+            <h1 className="text-6xl font-medium leading-tight">Olá, {userFirstName} seja bem-vindo(a) ao seu perfil.</h1>
             <p className="text-xl leading-relaxed">Você tem o controle total das informações da sua conta. </p>
           </div>
 
@@ -404,14 +424,33 @@ export function UserPerfil() {
           <Separator className="my-20 bg-[#B4B2B0]"/>
           
           {/* My pet list */}
-          <section className="max-w-xl mx-auto">
+          <section className="max-w-xl mx-auto" id="petList">
             <h2 className="text-3xl font-medium leading-tight">Meus pets</h2>
 
-            <div className="pt-12 grid grid-cols-3">
+            <div className="pt-12 grid grid-cols-3 gap-y-4">
+            {pets.map((pet, index) => (
+              <Button key={index} variant={"ghost"} className="hover:bg-transparent h-full">
+                <a href={pet.link} className="">
+                  <div className="flex flex-col items-center gap-4">
+                    {pet.fotoDoPet ? (
+                      <img src={pet.fotoDoPet} alt={`Foto do ${pet.nomeDoPet}`} className="w-[160px] h-[160px] rounded-full group-hover:outline outline-4 outline-emerald-700 transition-colors"/>
+                    ) : (
+                      <AlturaNaoInformadaComponent />
+                    )}
+                    <span className="font-semibold text-2xl whitespace-nowrap w-[160px] overflow-hidden text-ellipsis">{pet.nomeDoPet}</span>
+                  </div>
+                </a>
+              </Button>
+              ))}
+
               <Button variant={"ghost"} className="hover:bg-transparent h-full group">
-                <a href="#" className="flex flex-col items-center">
-                  <img src="src/assets/animals/user-1.jpg" alt="Foto do Caramelo" className="max-w-[160px] w-full rounded-full group-hover:outline outline-4 outline-emerald-700"/>
-                  <span className="font-semibold text-2xl">Caramelo</span>
+                <a href="#">
+                  <div className="flex flex-col items-center gap-4">
+                    <div className="w-[160px] h-[160px] bg-blue-400 rounded-full group-hover:bg-blue-500 transition-colors flex items-center justify-center">
+                      <BsPlus className="w-14 h-14 text-white"/>
+                    </div>
+                    <span className="font-semibold text-2xl">Adicionar pet</span>
+                  </div>
                 </a>
               </Button>
             </div>
