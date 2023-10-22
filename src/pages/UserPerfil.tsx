@@ -18,7 +18,7 @@ const pessoalDataFormSchema = z.object({
   city:  z.string(),
   state: z.string(),
   district: z.string(),
-  number: z.number(),
+  number: z.string(),
   publicPlace: z.string(),
   cep: z.string(),
 })
@@ -32,7 +32,7 @@ export function UserPerfil() {
   const userCity = "Sorocaba";
   const userState = "SP";
   const userDistrict = "Além Ponte";
-  const userNumber = 2015;
+  const userNumber = "2015";
   const userPublicPlace = "Em cima do clube de campo";
   const userCEP = "18013-280";
 
@@ -272,113 +272,124 @@ export function UserPerfil() {
                   )}
                 />
 
-                {/* User city field  */}
-                <FormField
-                  control={formPesoalData.control}
-                  name="city"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Cidade</FormLabel>
-                      <FormControl>
-                        <Input 
-                          placeholder={userCity} {...field} 
-                          className="py-6 rounded-lg border-2 border-zinc-400 hover:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                {/* Two columns fields */}
+                <div className="space-y-10 flex flex-col">
 
-                {/* User state field  */}
-                <FormField
-                  control={formPesoalData.control}
-                  name="state"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Estado</FormLabel>
-                      <FormControl>
-                        <Input 
-                          placeholder={userState} {...field} 
-                          className="py-6 rounded-lg border-2 border-zinc-400 hover:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                  <div className="flex gap-6">
+                    {/* User city field  */}
+                    <FormField
+                      control={formPesoalData.control}
+                      name="city"
+                      render={({ field }) => (
+                        <FormItem className="flex-1">
+                          <FormLabel>Cidade</FormLabel>
+                          <FormControl>
+                            <Input 
+                              placeholder={userCity} {...field} 
+                              className="py-6 rounded-lg border-2 border-zinc-400 hover:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500"
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
 
-                {/* User district field  */}
-                <FormField
-                  control={formPesoalData.control}
-                  name="district"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Bairro</FormLabel>
-                      <FormControl>
-                        <Input 
-                          placeholder={userDistrict} {...field} 
-                          className="py-6 rounded-lg border-2 border-zinc-400 hover:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                    {/* User state field  */}
+                    <FormField
+                      control={formPesoalData.control}
+                      name="state"
+                      render={({ field }) => (
+                        <FormItem className="max-w-[200px] w-full">
+                          <FormLabel>Estado</FormLabel>
+                          <FormControl>
+                            <Input 
+                              placeholder={userState} {...field} 
+                              className="py-6 rounded-lg border-2 border-zinc-400 hover:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500"
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
 
-                {/* User number field  */}
-                <FormField
-                  control={formPesoalData.control}
-                  name="number"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Numero</FormLabel>
-                      <FormControl>
-                        <Input 
-                          placeholder={userNumber.toString()} {...field} 
-                          className="py-6 rounded-lg border-2 border-zinc-400 hover:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                  <div className="flex gap-6">
+                    {/* User district field  */}
+                    <FormField
+                      control={formPesoalData.control}
+                      name="district"
+                      render={({ field }) => (
+                        <FormItem className="flex-1">
+                          <FormLabel>Bairro</FormLabel>
+                          <FormControl>
+                            <Input 
+                              placeholder={userDistrict} {...field} 
+                              className="py-6 rounded-lg border-2 border-zinc-400 hover:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500"
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
 
-                {/* User public place (logadouro) field  */}
-                <FormField
-                  control={formPesoalData.control}
-                  name="publicPlace"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Logadouro</FormLabel>
-                      <FormControl>
-                        <Input 
-                          placeholder={userPublicPlace} {...field} 
-                          className="py-6 rounded-lg border-2 border-zinc-400 hover:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                    {/* User number field  */}
+                    <FormField
+                      control={formPesoalData.control}
+                      name="number"
+                      render={({ field }) => (
+                        <FormItem className="max-w-[200px] w-full">
+                          <FormLabel>Numero</FormLabel>
+                          <FormControl>
+                            <Input 
+                              placeholder={userNumber} {...field} 
+                              className="py-6 rounded-lg border-2 border-zinc-400 hover:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500"
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
 
-                {/* User public place (logadouro) field  */}
-                <FormField
-                  control={formPesoalData.control}
-                  name="cep"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Logadouro</FormLabel>
-                      <FormControl>
-                        <Input 
-                          placeholder={userCEP} {...field} 
-                          className="py-6 rounded-lg border-2 border-zinc-400 hover:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                  <div className="flex gap-6">
+                    {/* User public place (logadouro) field  */}
+                    <FormField
+                      control={formPesoalData.control}
+                      name="publicPlace"
+                      render={({ field }) => (
+                        <FormItem className="flex-1">
+                          <FormLabel>Logadouro</FormLabel>
+                          <FormControl>
+                            <Input 
+                              placeholder={userPublicPlace} {...field} 
+                              className="py-6 rounded-lg border-2 border-zinc-400 hover:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500"
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    {/* User public place (logadouro) field  */}
+                    <FormField
+                      control={formPesoalData.control}
+                      name="cep"
+                      render={({ field }) => (
+                        <FormItem className="max-w-[200px] w-full">
+                          <FormLabel>Logadouro</FormLabel>
+                          <FormControl>
+                            <Input 
+                              placeholder={userCEP} {...field} 
+                              className="py-6 rounded-lg border-2 border-zinc-400 hover:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500"
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                  
+                </div>
 
                 <Button type="submit" className="w-full bg-blue-500 py-6 hover:bg-blue-700">Salvar</Button>
               </form>
