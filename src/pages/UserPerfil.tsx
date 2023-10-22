@@ -13,6 +13,7 @@ import { Separator } from "@/components/ui/separator";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 
 const pessoalDataFormSchema = z.object({
+  // User base data
   name: z.string(),
   cpf: z.string(),
   birthday: z.string(),
@@ -406,6 +407,14 @@ export function UserPerfil() {
           <section className="max-w-xl mx-auto">
             <h2 className="text-3xl font-medium leading-tight">Meus pets</h2>
 
+            <div className="pt-12 grid grid-cols-3">
+              <Button variant={"ghost"} className="hover:bg-transparent h-full group">
+                <a href="#" className="flex flex-col items-center">
+                  <img src="src/assets/animals/user-1.jpg" alt="Foto do Caramelo" className="max-w-[160px] w-full rounded-full group-hover:outline outline-4 outline-emerald-700"/>
+                  <span className="font-semibold text-2xl">Caramelo</span>
+                </a>
+              </Button>
+            </div>
           </section>
 
           <Separator className="my-20 bg-[#B4B2B0]"/>
