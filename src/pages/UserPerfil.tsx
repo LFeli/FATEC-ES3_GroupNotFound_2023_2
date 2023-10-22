@@ -429,8 +429,8 @@ export function UserPerfil() {
 
             <div className="pt-12 grid grid-cols-3 gap-y-4">
             {pets.map((pet, index) => (
-              <Button key={index} variant={"ghost"} className="hover:bg-transparent h-full">
-                <a href={pet.link} className="">
+              <Button key={index} variant={"ghost"} className="hover:bg-transparent h-full group">
+                <a href={pet.link}>
                   <div className="flex flex-col items-center gap-4">
                     {pet.fotoDoPet ? (
                       <img src={pet.fotoDoPet} alt={`Foto do ${pet.nomeDoPet}`} className="w-[160px] h-[160px] rounded-full group-hover:outline outline-4 outline-emerald-700 transition-colors"/>
