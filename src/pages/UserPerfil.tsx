@@ -12,29 +12,29 @@ import { Input } from "@/components/ui/input";
 
 const pessoalDataFormSchema = z.object({
   name: z.string(),
-  // cpf: z.string(),
-  // birthday: z.string(),
-  // address: z.string(),
-  // city:  z.string(),
-  // state: z.string(),
-  // district: z.string(),
-  // number: z.number(),
-  // publicPlace: z.string(),
-  // cep: z.string(),
+  cpf: z.string(),
+  birthday: z.string(),
+  address: z.string(),
+  city:  z.string(),
+  state: z.string(),
+  district: z.string(),
+  number: z.number(),
+  publicPlace: z.string(),
+  cep: z.string(),
 })
 
 
 export function UserPerfil() {
   const userName = 'Bianca Carvalho';
-  // const userCPF = "111.222.333-01";
-  // const userBirthday = "15-04-1999";
-  // const userAddress = "Av. Eng. Carlos Reinaldo Mendes";
-  // const userCity = "Sorocaba";
-  // const userState = "SP";
-  // const userDistrict = "Além Ponte";
-  // const userNumber = 2015;
-  // const userPublicPlace = "Em cima do clube de campo";
-  // const userCEP = "18013-280";
+  const userCPF = "111.222.333-01";
+  const userBirthday = "15/04/1999";
+  const userAddress = "Av. Eng. Carlos Reinaldo Mendes";
+  const userCity = "Sorocaba";
+  const userState = "SP";
+  const userDistrict = "Além Ponte";
+  const userNumber = 2015;
+  const userPublicPlace = "Em cima do clube de campo";
+  const userCEP = "18013-280";
 
   // Name formats
   const userFirstName = userName.split(' ')[0];
@@ -50,15 +50,15 @@ export function UserPerfil() {
     resolver: zodResolver(pessoalDataFormSchema),
     defaultValues: {
       name: userName,
-      // cpf: userCPF,
-      // birthday: userBirthday,
-      // address: userAddress,
-      // city: userCity,
-      // state: userState,
-      // district: userDistrict,
-      // number: userNumber,
-      // publicPlace: userPublicPlace,
-      // cep: userCEP,
+      cpf: userCPF,
+      birthday: userBirthday,
+      address: userAddress,
+      city: userCity,
+      state: userState,
+      district: userDistrict,
+      number: userNumber,
+      publicPlace: userPublicPlace,
+      cep: userCEP,
     }
   })
 
@@ -210,6 +210,168 @@ export function UserPerfil() {
                       <FormControl>
                         <Input 
                           placeholder={userName} {...field} 
+                          className="py-6 rounded-lg border-2 border-zinc-400 hover:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                {/* User CPF field  */}
+                <FormField
+                  control={formPesoalData.control}
+                  name="cpf"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>CPF</FormLabel>
+                      <FormControl>
+                        <Input 
+                          placeholder={userCPF} {...field} 
+                          className="py-6 rounded-lg border-2 border-zinc-400 hover:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                {/* User birthday field  */}
+                <FormField
+                  control={formPesoalData.control}
+                  name="birthday"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Data de nascimento</FormLabel>
+                      <FormControl>
+                        <Input 
+                          placeholder={userBirthday} {...field} 
+                          className="py-6 rounded-lg border-2 border-zinc-400 hover:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                {/* User birthday field  */}
+                <FormField
+                  control={formPesoalData.control}
+                  name="address"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Endereço</FormLabel>
+                      <FormControl>
+                        <Input 
+                          placeholder={userAddress} {...field} 
+                          className="py-6 rounded-lg border-2 border-zinc-400 hover:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                {/* User city field  */}
+                <FormField
+                  control={formPesoalData.control}
+                  name="city"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Cidade</FormLabel>
+                      <FormControl>
+                        <Input 
+                          placeholder={userCity} {...field} 
+                          className="py-6 rounded-lg border-2 border-zinc-400 hover:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                {/* User state field  */}
+                <FormField
+                  control={formPesoalData.control}
+                  name="state"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Estado</FormLabel>
+                      <FormControl>
+                        <Input 
+                          placeholder={userState} {...field} 
+                          className="py-6 rounded-lg border-2 border-zinc-400 hover:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                {/* User district field  */}
+                <FormField
+                  control={formPesoalData.control}
+                  name="district"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Bairro</FormLabel>
+                      <FormControl>
+                        <Input 
+                          placeholder={userDistrict} {...field} 
+                          className="py-6 rounded-lg border-2 border-zinc-400 hover:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                {/* User number field  */}
+                <FormField
+                  control={formPesoalData.control}
+                  name="number"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Numero</FormLabel>
+                      <FormControl>
+                        <Input 
+                          placeholder={userNumber.toString()} {...field} 
+                          className="py-6 rounded-lg border-2 border-zinc-400 hover:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                {/* User public place (logadouro) field  */}
+                <FormField
+                  control={formPesoalData.control}
+                  name="publicPlace"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Logadouro</FormLabel>
+                      <FormControl>
+                        <Input 
+                          placeholder={userPublicPlace} {...field} 
+                          className="py-6 rounded-lg border-2 border-zinc-400 hover:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                {/* User public place (logadouro) field  */}
+                <FormField
+                  control={formPesoalData.control}
+                  name="cep"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Logadouro</FormLabel>
+                      <FormControl>
+                        <Input 
+                          placeholder={userCEP} {...field} 
                           className="py-6 rounded-lg border-2 border-zinc-400 hover:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500"
                         />
                       </FormControl>
