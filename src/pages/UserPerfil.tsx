@@ -3,9 +3,40 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { NavigationMenu, NavigationMenuLink, NavigationMenuList, NavigationMenuItem, NavigationMenuTrigger, NavigationMenuContent } from "@/components/ui/navigation-menu";
 import { BsFillHouseFill, BsFillPersonFill, BsGiftFill, BsBoxArrowRight, BsInstagram, BsArrowUp, BsFacebook, BsTiktok, BsArrowLeft } from "react-icons/bs";
 import { FaPaw } from "react-icons/fa";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+
+const pessoalDataFormSchema = z.object({
+  name: z.string(),
+  // cpf: z.string(),
+  // birthday: z.string(),
+  // address: z.string(),
+  // city:  z.string(),
+  // state: z.string(),
+  // district: z.string(),
+  // number: z.number(),
+  // publicPlace: z.string(),
+  // cep: z.string(),
+})
+
 
 export function UserPerfil() {
   const userName = 'Bianca Carvalho';
+  // const userCPF = "111.222.333-01";
+  // const userBirthday = "15-04-1999";
+  // const userAddress = "Av. Eng. Carlos Reinaldo Mendes";
+  // const userCity = "Sorocaba";
+  // const userState = "SP";
+  // const userDistrict = "Além Ponte";
+  // const userNumber = 2015;
+  // const userPublicPlace = "Em cima do clube de campo";
+  // const userCEP = "18013-280";
+
+  // Name formats
   const userFirstName = userName.split(' ')[0];
   const userAbbreviation = userName
   .split(' ')
@@ -13,6 +44,30 @@ export function UserPerfil() {
   .map(nome => nome.charAt(0))
   .join('');
 
+
+  //form settings
+  const formPesoalData = useForm<z.infer<typeof pessoalDataFormSchema>>({
+    resolver: zodResolver(pessoalDataFormSchema),
+    defaultValues: {
+      name: userName,
+      // cpf: userCPF,
+      // birthday: userBirthday,
+      // address: userAddress,
+      // city: userCity,
+      // state: userState,
+      // district: userDistrict,
+      // number: userNumber,
+      // publicPlace: userPublicPlace,
+      // cep: userCEP,
+    }
+  })
+
+  const[output, setOutput] = useState('')
+
+
+  function onSubmit(values: z.infer<typeof pessoalDataFormSchema>) {
+    setOutput(JSON.stringify(values, null, 2))
+  }
 
   return (
     <>
@@ -131,6 +186,44 @@ export function UserPerfil() {
               </Button>
             </a>
           </div>
+
+          {/* Texts */}
+          <div className="space-y-4">
+            <h1 className="text-6xl font-medium leading-tight">Olá, Bianca seja bem-vindo(a) ao seu perfil.</h1>
+            <p className="text-xl leading-relaxed">Você tem o controle total das informações da sua conta. </p>
+          </div>
+
+          {/* Pessoal datas form */}
+          <section className="max-w-xl mx-auto pt-20">
+            <h2 className="text-3xl font-medium leading-tight">Dados Pessoais</h2>
+
+            <Form {...formPesoalData}>
+              <form onSubmit={formPesoalData.handleSubmit(onSubmit)} className="space-y-10 pt-6">
+
+                {/* User name field  */}
+                <FormField
+                  control={formPesoalData.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Nome</FormLabel>
+                      <FormControl>
+                        <Input 
+                          placeholder={userName} {...field} 
+                          className="py-6 rounded-lg border-2 border-zinc-400 hover:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <Button type="submit" className="w-full bg-blue-500 py-6 hover:bg-blue-700">Salvar</Button>
+              </form>
+
+              <pre>{output}</pre>
+            </Form>
+          </section>
 
         </div>
       </main>
