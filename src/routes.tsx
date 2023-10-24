@@ -4,6 +4,7 @@ import { Login } from './pages/Login'
 import { PetPerfil } from './pages/PetPerfil'
 import { App } from './App'
 import { PageNotFound } from './pages/PageNotFound'
+import { UserPerfil } from './pages/UserPerfil'
 
 export const router = createBrowserRouter([
   {
@@ -20,11 +21,16 @@ export const router = createBrowserRouter([
         path: 'login',
         element: <Login />,
       },
+
+      {
+        path: 'user-perfil',
+        element: <UserPerfil />,
+      },
     
       {
         path: 'pet-perfil',
         element: <PetPerfil />
-      }
+      },
     ]
   },
 
